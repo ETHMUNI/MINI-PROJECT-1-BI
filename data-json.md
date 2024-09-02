@@ -10,27 +10,26 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-# Indlæs JSON-data fra filen
 def load_json_data(filepath):
     with open(filepath, 'r') as f:
         return json.load(f)
 
-# Indlæs data fra iris.json
+
 dataset = load_json_data('iris.json')
 
-# Konverter JSON-data til en Pandas DataFrame
+
 dataFrame = pd.DataFrame(dataset)
 
-# Udforsk dataene
+
 print(dataFrame.head())
 
-# Tjek for manglende værdier
+
 print(dataFrame.isnull().sum())
 
-# Fjern rækker med manglende værdier, hvis der er nogen
+
 dataFrame = dataFrame.dropna()
 
-# Beregning af gennemsnit for sepal bredder og længder for hver art
+
 setosaSepalWidths = dataFrame[dataFrame['species'] == 'setosa']['sepalWidth']
 versiColorSepalWidths = dataFrame[dataFrame['species'] == 'versicolor']['sepalWidth']
 virginicaSepalWidths = dataFrame[dataFrame['species'] == 'virginica']['sepalWidth']
@@ -48,12 +47,12 @@ averageWidth = [setosaAverage, versiAverage, virgiAverage]
 
 species = ['setosa', 'versicolor', 'virginica']
 
-# Visualisering af gennemsnitlig sepal bredde efter art
+
 plt.title("Sepal Width Average by Species")
 sns.barplot(x=species, y=averageWidth)
 plt.show()
 
-# Visualisering af gennemsnitlig sepal længde efter art
+
 plt.title("Sepal Length Average by Species")
 sns.barplot(x=species, y=sepalLengthAverage)
 plt.show()
